@@ -4,7 +4,7 @@ import React from "react";
 export const Example: React.FunctionComponent = () => {
   const ref = React.useRef<HTMLDivElement>(null);
   const app = new PIXI.Application({ backgroundColor: 0x1099bb });
-  const bunny = PIXI.Sprite.from("src/icon.png");
+  const bunny = PIXI.Sprite.from("asserts/images/icon.png");
   bunny.anchor.set(0.5);
 
   // move the sprite to the center of the screen
