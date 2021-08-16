@@ -1,10 +1,10 @@
-import * as PIXI from "pixi.js";
+import { Application, Sprite } from "pixi.js";
 import React from "react";
 
 export const Example: React.FunctionComponent = () => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const app = new PIXI.Application({ backgroundColor: 0x1099bb });
-  const bunny = PIXI.Sprite.from("asserts/images/icon.png");
+  const app = new Application({ backgroundColor: 0x1099bb });
+  const bunny = Sprite.from("asserts/images/icon.png");
   bunny.anchor.set(0.5);
 
   // move the sprite to the center of the screen
