@@ -19,7 +19,6 @@ export const Example: React.FunctionComponent = () => {
   });
   React.useEffect(() => {
     ref.current?.appendChild(app.view);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [app.view]);
   return <div ref={ref} />;
 };
