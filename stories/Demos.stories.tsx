@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Example } from "../src";
+import { FlowEditor } from "../src/FlowEditor";
 
 // eslint-disable-next-line import/no-default-export
 export default {
@@ -7,5 +7,5 @@ export default {
 };
 
 export const Basic = () => {
-  return <Example />;
+  return <FlowEditor />;
 };
