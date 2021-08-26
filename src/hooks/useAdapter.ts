@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Application } from "pixi.js";
 
-export const useFitParent = (app: Application, initPosition?: () => void) => {
+export const useAdapter = (app: Application, initPosition?: () => void) => {
   React.useEffect(() => {
     resize();
     // eslint-disable-next-line react-hooks/exhaustive-deps

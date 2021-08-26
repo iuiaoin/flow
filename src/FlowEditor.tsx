@@ -1,6 +1,6 @@
 import { Application, Sprite } from "pixi.js";
 import React from "react";
-import { useFitParent } from "./hooks/useFitParent";
+import { useAdapter } from "./hooks/useAdapter";
 
 interface IFlowEditorProps {}
 
@@ -27,7 +27,7 @@ export const FlowEditor: React.FunctionComponent<IFlowEditorProps> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useFitParent(app, initPosition);
+  useAdapter(app, initPosition);
 
   return <div ref={ref} />;
 };
