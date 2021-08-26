@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlowEditor } from "../src/FlowEditor";
+import { FlowEditor } from "../src/components/FlowEditor";
 
 // eslint-disable-next-line import/no-default-export
 export default {

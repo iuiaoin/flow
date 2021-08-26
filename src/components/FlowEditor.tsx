@@ -1,6 +1,6 @@
 import { Application, Sprite } from "pixi.js";
 import React from "react";
-import { useAdapter } from "./hooks/useAdapter";
+import { useAdapter } from "../hooks/useAdapter";
 
 interface IFlowEditorProps {}
 
