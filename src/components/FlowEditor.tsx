@@ -18,7 +18,6 @@ export const FlowEditor: React.FunctionComponent<IFlowEditorProps> = (
 
   app.stage.addChild(bunny);
 
-  // Listen for animate update
   app.ticker.add((delta: number) => {
     bunny.rotation += 0.1 * delta;
   });
