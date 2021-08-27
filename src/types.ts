@@ -1,3 +1,5 @@
+import { IApplicationOptions } from "pixi.js";
+
 export interface INode<T = unknown, P = unknown> {
   readonly id: string;
   readonly x: number;
@@ -34,3 +36,5 @@ export interface IGraph<
   readonly nodes: ReadonlyArray<INode<NodeData, PortData>>;
   readonly edges: ReadonlyArray<IEdge<EdgeData>>;
 }
+
+export interface IGraphProps extends IGraph, IApplicationOptions {}
