@@ -2,11 +2,7 @@ import { Application, Sprite } from "pixi.js";
 import React from "react";
 import { useAdapter } from "../hooks/useAdapter";
 
-interface IFlowEditorProps {}
-
-export const FlowEditor: React.FunctionComponent<IFlowEditorProps> = (
-  props
-) => {
+export const FlowEditor: React.FunctionComponent = () => {
   const ref = React.useRef<HTMLDivElement>(null);
   const app = new Application({ backgroundColor: 0xf4f4f4 });
   const bunny = Sprite.from("asserts/images/icon.png");
