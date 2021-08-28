@@ -9,8 +9,8 @@ export const Graph: React.FunctionComponent<IGraphProps> = (props) => {
 
   nodes.forEach((node) => {
     const rect = new Graphics();
-    rect.lineStyle(4, 0xff3300, 1);
-    rect.drawRect(20, 20, 64, 37);
+    rect.lineStyle(1, 0x8a8886, 1);
+    rect.drawRoundedRect(0.5, 0.5, 272, 54, 10);
     rect.endFill();
     app.stage.addChild(rect);
   });
