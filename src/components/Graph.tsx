@@ -17,7 +17,6 @@ export const Graph: React.FunctionComponent<IGraphProps> = (props) => {
 
   React.useEffect(() => {
     ref.current?.appendChild(app.view);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div ref={ref}></div>;
