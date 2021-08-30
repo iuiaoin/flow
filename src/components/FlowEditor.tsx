@@ -1,28 +1,42 @@
 import { Application, Sprite } from "pixi.js";
 import React from "react";
-import { useAdapter } from "../hooks/useAdapter";
 
 export const FlowEditor: React.FunctionComponent = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const app = new Application({ backgroundColor: 0xf4f4f4 });
-  const bunny = Sprite.from("asserts/images/icon.png");
+  const ref = React.useRef<HTMLCanvasElement>(null);
+  const app = React.useRef<Application>();
+  const bunny = Sprite.from(
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/693612/IaUrttj.png"
+  );
   bunny.anchor.set(0.5);
 
-  const initPosition = React.useCallback(() => {
-    bunny.position.set(app.screen.width / 2, app.screen.height / 2);
-  }, [app.screen, bunny]);
+  const initPosition = () => {
+    bunny.position.set(
+      (app.current?.screen.width ?? 800) / 2,
+      (app.current?.screen.height ?? 600) / 2
+    );
+  };
 
-  app.stage.addChild(bunny);
+  const resize = () => {
+    const parent = app.current?.view.parentNode as HTMLElement;
+    app.current?.renderer.resize(parent.clientWidth, parent.clientHeight);
+    initPosition();
+  };
 
-  app.ticker.add((delta: number) => {
-    bunny.rotation += 0.1 * delta;
-  });
   React.useEffect(() => {
-    ref.current?.appendChild(app.view);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    app.current = new Application({
+      backgroundColor: 0xf4f4f4,
+      view: ref.current as HTMLCanvasElement,
+    });
+    app.current.stage.addChild(bunny);
+    app.current.ticker.add((delta: number) => {
+      bunny.rotation += 0.1 * delta;
+    });
+    resize();
+    window.addEventListener("resize", resize);
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
-  useAdapter(app, initPosition);
-
-  return <div ref={ref} />;
+  return <canvas ref={ref} />;
 };
