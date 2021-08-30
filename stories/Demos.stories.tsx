@@ -1,17 +1,17 @@
 import * as React from "react";
-import { FlowEditor } from "../src/components/FlowEditor";
 import { Graph } from "../src/components/Graph";
+import { FlowEditor } from "./components/FlowEditor";
 
 // eslint-disable-next-line import/no-default-export
 export default {
   title: "Demos/flow",
 };
 
-export const Basic = () => {
+export const Test = () => {
   return <FlowEditor />;
 };
 
-export const Test = () => {
+export const Basic = () => {
   return (
     <Graph
       backgroundColor={0xf4f4f4}
