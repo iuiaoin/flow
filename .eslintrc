@@ -185,7 +185,7 @@
       "undefined"
     ],
     "id-match": "error",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
     "import/no-deprecated": "error",
     "import/no-extraneous-dependencies": [
       "error",

@@ -1,14 +1,19 @@
 import * as React from "react";
 import { Graph } from "../src/components/Graph";
 import { FlowEditor } from "./components/FlowEditor";
+import "./styles/base.m.scss";
+import { Wrapper } from "./components/Wrapper";
 
-// eslint-disable-next-line import/no-default-export
 export default {
   title: "Demos/flow",
 };
 
 export const Test = () => {
-  return <FlowEditor />;
+  return (
+    <Wrapper>
+      <FlowEditor />
+    </Wrapper>
+  );
 };
 
 export const Basic = () => {
