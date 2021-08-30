@@ -292,7 +292,7 @@
     "react/no-danger": "error",
     "react/no-unused-state": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/tabindex-no-positive": "error",
     "jsx-a11y/role-supports-aria-props": "error",
     "jsx-a11y/role-has-required-aria-props": "error",
