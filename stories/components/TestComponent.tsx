@@ -1,7 +1,7 @@
 import { Application, Sprite } from "pixi.js";
 import React from "react";
 
-export const FlowEditor: React.FunctionComponent = () => {
+export const TestComponent: React.FunctionComponent = () => {
   const ref = React.useRef<HTMLCanvasElement>(null);
   const app = React.useRef<Application>();
   const bunny = Sprite.from(

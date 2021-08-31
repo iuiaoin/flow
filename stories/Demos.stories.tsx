@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Graph } from "../src/components/Graph";
-import { FlowEditor } from "./components/FlowEditor";
+import { TestComponent } from "./components/TestComponent";
 import "./styles/base.m.scss";
 import { Wrapper } from "./components/Wrapper";
 
@@ -11,7 +11,7 @@ export default {
 export const Test = () => {
   return (
     <Wrapper>
-      <FlowEditor />
+      <TestComponent />
     </Wrapper>
   );
 };
