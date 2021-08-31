@@ -3,7 +3,7 @@ import { Application } from "pixi.js";
 import { IGraphProps } from "../types";
 import { useAdapter } from "../hooks/useAdapter";
 
-export const Graph: React.FunctionComponent<IGraphProps> = (props) => {
+export const Graph: React.FC<IGraphProps> = (props) => {
   const { backgroundColor } = props;
   const ref = React.useRef<HTMLCanvasElement>(null);
   const app = React.useRef<Application>();

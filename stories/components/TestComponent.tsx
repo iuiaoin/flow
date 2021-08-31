@@ -1,7 +1,7 @@
 import { Application, Sprite } from "pixi.js";
 import React from "react";
 
-export const TestComponent: React.FunctionComponent = () => {
+export const TestComponent: React.FC = () => {
   const ref = React.useRef<HTMLCanvasElement>(null);
   const app = React.useRef<Application>();
   const bunny = Sprite.from(
