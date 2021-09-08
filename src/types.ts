@@ -38,3 +38,9 @@ export interface IGraph<
 }
 
 export interface IGraphProps extends IGraph, IApplicationOptions {}
+
+export interface IStageProps {
+  width?: number;
+  height?: number;
+  options?: IApplicationOptions;
+}
