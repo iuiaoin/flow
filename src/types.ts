@@ -1,4 +1,4 @@
-import { IApplicationOptions } from "pixi.js";
+import { IApplicationOptions, DisplayObject } from "pixi.js";
 
 export interface INode<T = unknown, P = unknown> {
   readonly id: string;
@@ -44,3 +44,5 @@ export interface IStageProps {
   height?: number;
   options?: IApplicationOptions;
 }
+
+export type Instance = DisplayObject;

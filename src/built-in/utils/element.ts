@@ -1,3 +1,9 @@
-import { createElement as dd } from "react";
+import { Instance } from "../../types";
 
-export const createElement = () => {};
+export const createElement = (
+  type: string,
+  props = {},
+  root = null
+): Instance | undefined => {
+  return undefined;
+};
