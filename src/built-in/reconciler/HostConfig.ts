@@ -13,15 +13,15 @@ export const HostConfig: IHostConfig<
   Props,
   Container,
   Instance,
-  void,
   unknown,
   unknown,
   unknown,
   unknown,
+  Record<string, unknown>,
   UpdatePayload,
   unknown,
-  unknown,
-  unknown
+  number,
+  number
 > = {
   getRootHostContext(): Record<string, unknown> {
     return NO_CONTEXT;
