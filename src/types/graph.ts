@@ -1,4 +1,4 @@
-import { IApplicationOptions, DisplayObject } from "pixi.js";
+import { IApplicationOptions } from "pixi.js";
 
 export interface INode<T = unknown, P = unknown> {
   readonly id: string;
@@ -38,11 +38,3 @@ export interface IGraph<
 }
 
 export interface IGraphProps extends IGraph, IApplicationOptions {}
-
-export interface IStageProps {
-  width?: number;
-  height?: number;
-  options?: IApplicationOptions;
-}
-
-export type Instance = DisplayObject;

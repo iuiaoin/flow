@@ -11,7 +11,7 @@ export const Graph: React.FC<IGraphProps> = (props) => {
   React.useEffect(() => {
     app.current = new Application({
       backgroundColor,
-      view: ref.current as HTMLCanvasElement,
+      view: ref.current as HTMLCanvasElement
     });
   }, [backgroundColor]);
 

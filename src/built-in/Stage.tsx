@@ -13,7 +13,7 @@ export const Stage: React.FC<IStageProps> = (props) => {
       height,
       autoDensity: true,
       view: ref.current as HTMLCanvasElement,
-      ...options,
+      ...options
     });
   }, []);
 
