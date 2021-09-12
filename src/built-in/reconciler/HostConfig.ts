@@ -3,7 +3,8 @@ import { Container, Instance, Props, UpdatePayload } from "../../types";
 import { NO_CONTEXT } from "../constants";
 import { appendChild } from "../utils/appendChild";
 import { diffProperties } from "../utils/diffProperties";
-import { createElement } from "../utils/element";
+import { dispatchRender } from "../utils/dispatchRender";
+import { createElement } from "../utils/createElement";
 import { hasOwnProperty } from "../utils/hasOwnProperty";
 import { insertBefore } from "../utils/insertBefore";
 import { removeChild } from "../utils/removeChild";
@@ -100,37 +101,52 @@ export const HostConfig: IHostConfig<
 
   appendInitialChild(parent: Instance, child: Instance): void {
     appendChild(parent, child);
+    dispatchRender("appendInitialChild");
   },
 
   appendChild(parent: Instance, child: Instance): void {
     appendChild(parent, child);
+    dispatchRender("appendChild");
   },
 
   appendChildToContainer(container: Container, child: Instance): void {
     appendChild(container, child);
+    dispatchRender("appendChildToContainer");
   },
 
   removeChild(parent: Instance, child: Instance): void {
     removeChild(parent, child);
+    dispatchRender("removeChild");
   },
 
   removeChildFromContainer(container: Container, child: Instance): void {
     removeChild(container, child);
+    dispatchRender("removeChildFromContainer");
   },
 
-  insertBefore,
+  insertBefore(parent: Instance, child: Instance, beforeChild: Instance): void {
+    insertBefore(parent, child, beforeChild);
+    dispatchRender("insertBefore");
+  },
 
   insertInContainerBefore(container: Container, child: Instance, beforeChild: Instance): void {
     insertBefore(container, child, beforeChild);
+    dispatchRender("insertInContainerBefore");
   },
 
   commitUpdate(
     instance: Instance,
-    updatePayload: UpdatePayload,
-    type: string,
+    _updatePayload: UpdatePayload,
+    _type: string,
     prevProps: Props,
     nextProps: Props
-  ): void {},
+  ): void {
+    const { applyProps } = instance;
+    const changed = applyProps(instance, prevProps, nextProps);
+    if (changed || prepareChanged) {
+      dispatchRender("commitUpdate");
+    }
+  },
 
   commitMount(): void {
     // noop

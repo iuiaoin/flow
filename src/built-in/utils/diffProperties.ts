@@ -1,7 +1,7 @@
 /* eslint-disable security/detect-object-injection */
 import { Props, UpdatePayload } from "../../types";
 import { hasOwnProperty } from "./hasOwnProperty";
-import { isEmpty } from "./isEmpty";
+import { isNil } from "./isNil";
 
 export const diffProperties = (
   lastProps: Props = {},
@@ -10,11 +10,7 @@ export const diffProperties = (
   let updatePayload: UpdatePayload | null = null;
 
   Object.keys(lastProps).forEach((propKey) => {
-    if (
-      hasOwnProperty(nextProps, propKey) ||
-      isEmpty(lastProps[propKey]) ||
-      propKey === "children"
-    ) {
+    if (hasOwnProperty(nextProps, propKey) || isNil(lastProps[propKey]) || propKey === "children") {
       return;
     }
     if (!updatePayload) {
@@ -26,11 +22,7 @@ export const diffProperties = (
   Object.keys(nextProps).forEach((propKey) => {
     const nextProp = nextProps[propKey];
     const lastProp = lastProps[propKey];
-    if (
-      nextProp === lastProp ||
-      (isEmpty(nextProp) && isEmpty(lastProp)) ||
-      propKey === "children"
-    ) {
+    if (nextProp === lastProp || (isNil(nextProp) && isNil(lastProp)) || propKey === "children") {
       return;
     }
     if (!updatePayload) {
