@@ -31,11 +31,12 @@ export const diffProperties = (
       (isEmpty(nextProp) && isEmpty(lastProp)) ||
       propKey === "children"
     ) {
-      if (!updatePayload) {
-        updatePayload = [];
-      }
-      updatePayload.push(propKey, nextProp);
+      return;
     }
+    if (!updatePayload) {
+      updatePayload = [];
+    }
+    updatePayload.push(propKey, nextProp);
   });
 
   return updatePayload;
