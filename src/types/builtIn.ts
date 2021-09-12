@@ -1,4 +1,4 @@
-import { IApplicationOptions, DisplayObject } from "pixi.js";
+import { IApplicationOptions, Container as PixiContainer } from "pixi.js";
 
 export interface IStageProps {
   width?: number;
@@ -6,4 +6,19 @@ export interface IStageProps {
   options?: IApplicationOptions;
 }
 
-export type Instance = DisplayObject;
+export interface Instance extends Container {
+  config?: IConfig;
+  didMount?(child: Instance, parent: Instance): void;
+  willUnmount?(child: Instance, parent: Instance): void;
+}
+
+export interface Container extends PixiContainer {}
+
+export type Props = Record<string, unknown> | undefined;
+
+export type UpdatePayload = Array<string | null | unknown>;
+
+export interface IConfig {
+  destroy?: boolean;
+  destroyChildren?: boolean;
+}

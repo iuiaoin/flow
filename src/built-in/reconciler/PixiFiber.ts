@@ -1,3 +1,4 @@
-import Reconciler from "react-reconciler";
+import ReactReconciler from "react-reconciler";
+import { HostConfig } from "./HostConfig";
 
-export const PixiFiber = Reconciler({});
+export const PixiFiber = ReactReconciler(HostConfig);
