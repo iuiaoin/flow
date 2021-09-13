@@ -5,44 +5,44 @@ import { setValue } from "./setValue";
 
 export const applyDefaultProps = (
   instance: Instance,
-  oldProps: Props = {},
-  newProps: Props = {}
+  prevProps: Props = {},
+  nextProps: Props = {}
 ): boolean => {
   let changed = false;
   const events = Object.values(Events);
-  const newPropsKeys = Object.keys(newProps);
+  const nextPropKeys = Object.keys(nextProps);
 
-  if (!newProps.ignoreEvents) {
+  if (!nextProps.ignoreEvents) {
     for (const e of events) {
-      if (oldProps[e] !== newProps[e]) {
+      if (prevProps[e] !== nextProps[e]) {
         changed = true;
-        if (typeof oldProps[e] === "function") {
-          instance.removeListener(e, oldProps[e] as typeof Function);
+        if (typeof prevProps[e] === "function") {
+          instance.removeListener(e, prevProps[e] as typeof Function);
         }
-        if (typeof newProps[e] === "function") {
-          instance.on(e, newProps[e] as typeof Function);
+        if (typeof nextProps[e] === "function") {
+          instance.on(e, nextProps[e] as typeof Function);
         }
       }
     }
   }
 
-  if (newProps.overwriteProps) {
-    newPropsKeys.forEach((p) => {
-      if (oldProps[p] !== newProps[p]) {
+  if (nextProps.overwriteProps) {
+    nextPropKeys.forEach((p) => {
+      if (prevProps[p] !== nextProps[p]) {
         changed = true;
-        setValue(instance, p, newProps[p]);
+        setValue(instance, p, nextProps[p]);
       }
     });
     return changed;
   }
 
-  const propKeys = newPropsKeys.filter(
+  const propKeys = nextPropKeys.filter(
     (p) => ![...Object.keys(PROPS_RESERVED), ...events].includes(p)
   );
 
   for (const p of propKeys) {
-    const value = newProps[p];
-    if (newProps[p] !== oldProps[p]) {
+    const value = nextProps[p];
+    if (nextProps[p] !== prevProps[p]) {
       changed = true;
     }
     if (value !== undefined) {

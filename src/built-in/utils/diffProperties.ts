@@ -4,13 +4,13 @@ import { hasOwnProperty } from "./hasOwnProperty";
 import { isNil } from "./isNil";
 
 export const diffProperties = (
-  lastProps: Props = {},
+  prevProps: Props = {},
   nextProps: Props = {}
 ): UpdatePayload | null => {
   let updatePayload: UpdatePayload | null = null;
 
-  Object.keys(lastProps).forEach((propKey) => {
-    if (hasOwnProperty(nextProps, propKey) || isNil(lastProps[propKey]) || propKey === "children") {
+  Object.keys(prevProps).forEach((propKey) => {
+    if (hasOwnProperty(nextProps, propKey) || isNil(prevProps[propKey]) || propKey === "children") {
       return;
     }
     if (!updatePayload) {
@@ -21,8 +21,8 @@ export const diffProperties = (
 
   Object.keys(nextProps).forEach((propKey) => {
     const nextProp = nextProps[propKey];
-    const lastProp = lastProps[propKey];
-    if (nextProp === lastProp || (isNil(nextProp) && isNil(lastProp)) || propKey === "children") {
+    const prevProp = prevProps[propKey];
+    if (nextProp === prevProp || (isNil(nextProp) && isNil(prevProp)) || propKey === "children") {
       return;
     }
     if (!updatePayload) {

@@ -10,7 +10,7 @@ export interface Instance extends Container {
   config?: IConfig;
   didMount?(child: Instance, parent: Instance): void;
   willUnmount?(child: Instance, parent: Instance): void;
-  applyProps?(instance: Instance, oldProps: Props, newProps: Props): boolean;
+  applyProps?(instance: Instance, prevProps: Props, nextProps: Props): boolean;
 }
 
 export interface Container extends PixiContainer {}

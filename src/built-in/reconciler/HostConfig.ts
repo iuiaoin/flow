@@ -80,10 +80,10 @@ export class HostConfig
   public prepareUpdate(
     _instance: Instance,
     _type: string,
-    oldProps: Props,
-    newProps: Props
+    prevProps: Props,
+    nextProps: Props
   ): UpdatePayload | null {
-    this.prepareChanged = diffProperties(oldProps, newProps);
+    this.prepareChanged = diffProperties(prevProps, nextProps);
     return this.prepareChanged;
   }
 
