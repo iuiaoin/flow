@@ -1,13 +1,13 @@
 /* eslint-disable security/detect-object-injection */
 import { Instance, Props } from "../../types";
-import { Events } from "../constants";
+import { Events, PROPS_DISPLAY_OBJECT, PROPS_RESERVED } from "../constants";
 import { setValue } from "./setValue";
 
 export const applyDefaultProps = (
   instance: Instance,
   oldProps: Props = {},
   newProps: Props = {}
-): void => {
+): boolean => {
   let changed = false;
   const events = Object.values(Events);
   const newPropsKeys = Object.keys(newProps);
@@ -17,10 +17,10 @@ export const applyDefaultProps = (
       if (oldProps[e] !== newProps[e]) {
         changed = true;
         if (typeof oldProps[e] === "function") {
-          instance.removeListener(e, oldProps[e]);
+          instance.removeListener(e, oldProps[e] as typeof Function);
         }
         if (typeof newProps[e] === "function") {
-          instance.on(e, newProps[e]);
+          instance.on(e, newProps[e] as typeof Function);
         }
       }
     }
@@ -33,34 +33,23 @@ export const applyDefaultProps = (
         setValue(instance, p, newProps[p]);
       }
     });
-    return;
+    return changed;
   }
 
-  const propKeys = newPropsKeys.filter();
+  const propKeys = newPropsKeys.filter(
+    (p) => ![...Object.keys(PROPS_RESERVED), ...events].includes(p)
+  );
 
-  const props = newPropKeys.filter(filterProps);
-
-  for (let i = 0; i < props.length; i++) {
-    const prop = props[i];
-    const value = newProps[prop];
-
-    if (newProps[prop] !== oldProps[prop]) {
+  for (const p of propKeys) {
+    const value = newProps[p];
+    if (newProps[p] !== oldProps[p]) {
       changed = true;
     }
-
     if (value !== undefined) {
-      // set value if defined
-      setValue(instance, prop, value);
-    } else if (prop in PROPS_DISPLAY_OBJECT) {
-      // is a default value, use that
-      console.warn(
-        `setting default value: ${prop}, from: ${instance[prop]} to: ${value} for`,
-        instance
-      );
+      setValue(instance, p, value);
+    } else if (p in PROPS_DISPLAY_OBJECT) {
       changed = true;
-      setValue(instance, prop, PROPS_DISPLAY_OBJECT[prop]);
-    } else {
-      console.warn(`ignoring prop: ${prop}, from ${instance[prop]} to ${value} for`, instance);
+      setValue(instance, p, PROPS_DISPLAY_OBJECT[p]);
     }
   }
 
