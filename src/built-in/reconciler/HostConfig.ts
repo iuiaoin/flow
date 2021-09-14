@@ -1,14 +1,10 @@
 import { HostConfig as IHostConfig } from "react-reconciler";
 import { Container, Instance, Props, UpdatePayload } from "../../types";
 import { NO_CONTEXT } from "../constants";
-import { appendChild } from "../utils/appendChild";
-import { diffProperties } from "../utils/diffProperties";
-import { dispatchRender } from "../utils/dispatchRender";
-import { createElement } from "../utils/createElement";
-import { hasOwnProperty } from "../utils/hasOwnProperty";
-import { insertBefore } from "../utils/insertBefore";
-import { removeChild } from "../utils/removeChild";
-import { applyDefaultProps } from "../utils/applyDefaultProps";
+import { appendChild, createElement, insertBefore, removeChild } from "../utils/element";
+import { diffProperties, applyDefaultProps } from "../utils/props";
+import { dispatchRender } from "../utils/pixi";
+import { hasOwnProperty } from "../utils/common";
 
 export class HostConfig
   implements

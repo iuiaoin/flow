@@ -1,7 +1,8 @@
 /* eslint-disable security/detect-object-injection */
-import { Instance, Props } from "../../types";
+import { Instance, Props, UpdatePayload } from "../../types";
 import { Events, PROPS_DISPLAY_OBJECT, PROPS_RESERVED } from "../constants";
-import { setValue } from "./setValue";
+import { setValue } from "./pixi";
+import { hasOwnProperty, isNil } from "./common";
 
 export const applyDefaultProps = (
   instance: Instance,
@@ -54,4 +55,35 @@ export const applyDefaultProps = (
   }
 
   return changed;
+};
+
+export const diffProperties = (
+  prevProps: Props = {},
+  nextProps: Props = {}
+): UpdatePayload | null => {
+  let updatePayload: UpdatePayload | null = null;
+
+  Object.keys(prevProps).forEach((propKey) => {
+    if (hasOwnProperty(nextProps, propKey) || isNil(prevProps[propKey]) || propKey === "children") {
+      return;
+    }
+    if (!updatePayload) {
+      updatePayload = [];
+    }
+    updatePayload.push(propKey, null);
+  });
+
+  Object.keys(nextProps).forEach((propKey) => {
+    const nextProp = nextProps[propKey];
+    const prevProp = prevProps[propKey];
+    if (nextProp === prevProp || (isNil(nextProp) && isNil(prevProp)) || propKey === "children") {
+      return;
+    }
+    if (!updatePayload) {
+      updatePayload = [];
+    }
+    updatePayload.push(propKey, nextProp);
+  });
+
+  return updatePayload;
 };
