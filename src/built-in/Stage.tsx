@@ -35,7 +35,7 @@ export class Stage extends React.Component<IStageProps> {
     if (options?.view) {
       return null;
     }
-    return <canvas ref={this.ref} />;
+    return <canvas ref={this.ref.bind(this)} />;
   }
 
   private ref(el: HTMLCanvasElement | null): void {
