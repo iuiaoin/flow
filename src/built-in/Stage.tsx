@@ -34,6 +34,8 @@ export class Stage extends React.Component<IStageProps> {
 
   public componentWillUnmount(): void {
     window.removeEventListener("resize", this.adapter.bind(this));
+    PixiFiber.updateContainer(null, this.mountNode, this);
+    this.app.destroy();
   }
 
   public render(): React.ReactNode {
