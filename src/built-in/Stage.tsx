@@ -27,7 +27,13 @@ export class Stage extends React.Component<IStageProps> {
 
     this.mountNode = PixiFiber.createContainer(this.app.stage, 2, false, null);
     PixiFiber.updateContainer(this.getChildren(), this.mountNode, this);
+    this.adapter();
+    window.addEventListener("resize", this.adapter.bind(this));
     this.renderStage();
+  }
+
+  public componentWillUnmount(): void {
+    window.removeEventListener("resize", this.adapter.bind(this));
   }
 
   public render(): React.ReactNode {
@@ -49,5 +55,10 @@ export class Stage extends React.Component<IStageProps> {
 
   private renderStage(): void {
     this.app.renderer.render(this.app.stage);
+  }
+
+  private adapter(): void {
+    const parent = this.app.view.parentNode as HTMLElement | undefined;
+    this.app.renderer.resize(parent?.clientWidth ?? 800, parent?.clientHeight ?? 600);
   }
 }
