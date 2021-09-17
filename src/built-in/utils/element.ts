@@ -33,8 +33,8 @@ export const insertBefore = (parent: Instance, child: Instance, beforeChild: Ins
   }
 };
 
-export const createElement = (type: string, props = {}): Instance => {
-  const instance: Instance = components[type]?.(props) ?? new Container();
+export const createElement = (type: string, props = {}, root = null): Instance => {
+  const instance: Instance = components[type]?.(root, props) ?? new Container();
   (instance.applyProps ?? applyDefaultProps)(instance, {}, props);
   return instance;
 };
