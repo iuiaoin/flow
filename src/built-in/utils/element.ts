@@ -1,5 +1,8 @@
+/* eslint-disable security/detect-object-injection */
 import { Container } from "pixi.js";
 import { Instance } from "../../types";
+import * as components from "../components";
+import { applyDefaultProps } from "./props";
 
 export const appendChild = (parent: Instance, child: Instance): void => {
   parent.addChild?.(child);
@@ -31,5 +34,7 @@ export const insertBefore = (parent: Instance, child: Instance, beforeChild: Ins
 };
 
 export const createElement = (type: string, props = {}): Instance => {
-  return new Container();
+  const instance: Instance = components[type]?.(props) ?? new Container();
+  (instance.applyProps ?? applyDefaultProps)(instance, {}, props);
+  return instance;
 };

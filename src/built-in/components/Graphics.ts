@@ -1,6 +1,6 @@
 import { Graphics as PixiGraphics } from "pixi.js";
-import { Instance, Props, GraphicsInstance, TProps, IGraphicsProps } from "../types";
-import { applyDefaultProps } from "./utils/props";
+import { Instance, Props, GraphicsInstance, TProps, IGraphicsProps } from "../../types";
+import { applyDefaultProps } from "../utils/props";
 
 export const Graphics = (): GraphicsInstance => {
   const g: GraphicsInstance = new PixiGraphics();
