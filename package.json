@@ -15,6 +15,7 @@
   },
   "types": "dist/src/index.d.ts",
   "dependencies": {
+    "@inlet/react-pixi": "^6.6.5",
     "pixi.js": "^6.1.2"
   },
   "peerDependencies": {
